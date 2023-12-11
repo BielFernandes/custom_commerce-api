@@ -10,6 +10,8 @@ app.config.from_object(config) #DB CONFIG
 db.init_app(app) #BASE MODEL
 with app.app_context(): #CREATE BASE MODEL CHILDRENS
     db.create_all()
+    print('Database criada com sucesso.')
+    db.session.commit()
 
 app.register_blueprint(user_blueprint) #USER ROUTE BLUEPRINT
 
