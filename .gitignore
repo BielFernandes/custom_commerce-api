@@ -1,0 +1,8 @@
+# Arquivos e diretórios gerados pelo sistema operacional
+.DS_Store
+Thumbs.db
+
+# Ambiente virtual
+venv/
+
+__pycache__/
