@@ -1,12 +1,19 @@
 from src.models.User import User, db
 from src.models.Address import Address
+from datetime import date
+today = date.today()
 
 class UserController:
     def index(self):
-        squidward = User(name="squidward", fullname="Squidward Tentacles")
-        krabs = User(name="ehkrabs", fullname="Eugene H. Krabs")
+        squidward = User(
+                            fname="Gabriel",
+                            lname="Fernandes",
+                            email="gabrieldias082@gmail.com",
+                            password="bieldias882",
+                            admin=True,
+                            created_at=today
+                        )
         db.session.add(squidward)
-        db.session.add(krabs)
         print(db.session.new)
         db.session.commit()
         return 'okok', 200
