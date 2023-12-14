@@ -2,9 +2,7 @@ from flask import request
 from sqlalchemy import select
 from marshmallow import ValidationError
 from src.schemas.user import UserSchema
-
 from src.models.User import User, db
-from src.models.Address import Address
 from datetime import date
 
 class UserController:
@@ -33,12 +31,13 @@ class UserController:
 
         try:
             user = UserSchema()
+            data['password'] = user.hash_password(data['password'])
             data = user.load(data)
-
         except ValidationError as error:
             return error.messages, 422
 
         find_user = db.session.execute(select(User).where(User.email == data['email'])).all()
+
         if not find_user:
             user = User(**data)
             db.session.add(user)
