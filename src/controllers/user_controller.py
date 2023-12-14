@@ -1,6 +1,7 @@
-from flask import request
+from flask import request, jsonify
 from sqlalchemy import select
 from marshmallow import ValidationError
+from sqlalchemy.ext.serializer import loads, dumps
 from src.schemas.user import UserSchema
 from src.models.User import User, db
 from datetime import date
@@ -25,8 +26,11 @@ class UserController:
         data['admin'] = False
         data['created_at'] = today.isoformat()
 
-        if not data:
-            return { "message": "No input data provided" }, 400
+        if not data: return { "message": "No input data provided" }, 400
+
+        if data['password'] != data['confirm_password']: return { "message": "senhas divergem" }, 400
+
+        data.pop("confirm_password")
 
         try:
             user = UserSchema()
