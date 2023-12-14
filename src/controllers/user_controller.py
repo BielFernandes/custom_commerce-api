@@ -7,17 +7,16 @@ from datetime import date
 
 class UserController:
     def index(self):
-        squidward = User(
-                            fname="Gabriel",
-                            lname="Fernandes",
-                            email="asdasdasda@gmail.com",
-                            password="bieldias882",
-                            admin=True,
-                            created_at=today
-                        )
-        db.session.add(squidward)
-        print(db.session.new)
-        db.session.commit()
+        # squidward = User(
+        #                     fname="Gabriel",
+        #                     lname="Fernandes",
+        #                     email="asdasdasda@gmail.com",
+        #                     password="bieldias882",
+        #                     admin=True,
+        #                 )
+        # db.session.add(squidward)
+        # print(db.session.new)
+        # db.session.commit()
         return 'okok', 200
         
     def create(self):
