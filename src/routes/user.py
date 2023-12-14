@@ -9,3 +9,5 @@ user_blueprint.add_url_rule('/user', view_func=user_controller.index, methods=['
 
 user_blueprint.add_url_rule('/user', view_func=user_controller.create, methods=['POST'])
 
+user_blueprint.add_url_rule('/user/login', view_func=user_controller.login, methods=['POST'])
+
