@@ -5,4 +5,7 @@ user_blueprint = Blueprint('user_blueprint', __name__)
 
 user_controller = UserController()
 
-user_blueprint.add_url_rule('/user', view_func=user_controller.index)
+user_blueprint.add_url_rule('/user', view_func=user_controller.index, methods=['GET'])
+
+user_blueprint.add_url_rule('/user', view_func=user_controller.create, methods=['POST'])
+
