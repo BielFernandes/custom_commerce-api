@@ -10,7 +10,7 @@ class User(Base):
      fname: Mapped[str] = mapped_column(String(30), nullable=False)
      lname: Mapped[str] = mapped_column(String(30), nullable=False)
      email: Mapped[str] = mapped_column(String(30), unique=True, nullable=False)
-     password: Mapped[str] = mapped_column(String(30), nullable=False)
+     password: Mapped[str] = mapped_column(String, nullable=False)
      admin: Mapped[bool] = mapped_column(Boolean, default=False)
      created_at: Mapped[str] = mapped_column(Date)
 
