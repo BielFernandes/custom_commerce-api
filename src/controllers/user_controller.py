@@ -4,10 +4,16 @@ from marshmallow import ValidationError
 from src.schemas.user import UserSchema, LoginSchema
 from src.models.User import User, db
 from datetime import date
+from src.controllers.application_controller import ApplicationController
 import bcrypt
 import jwt
 
-class UserController:
+class UserController(ApplicationController):
+
+    def __init__(self):
+        super().__init__()
+        self.current_user = self.get_current_user()
+
     def index(self):
         # squidward = User(
         #                     fname="Gabriel",
@@ -87,8 +93,7 @@ class UserController:
             return { "message": "User does not exist" }, 401
         
     def teste(self):
-        request_info = request.headers.get("Authorization")
 
-        print(request_info)
+        print(self.current_user)
 
         return 'jsonify(request_info)'
