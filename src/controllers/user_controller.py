@@ -1,11 +1,11 @@
-from flask import request, jsonify
+from flask import request, make_response, jsonify
 from sqlalchemy import select
 from marshmallow import ValidationError
-from sqlalchemy.ext.serializer import loads, dumps
 from src.schemas.user import UserSchema, LoginSchema
 from src.models.User import User, db
 from datetime import date
 import bcrypt
+import jwt
 
 class UserController:
     def index(self):
@@ -72,8 +72,23 @@ class UserController:
             user_hash = user['password'].encode('utf-8')
 
             if bcrypt.checkpw(user_pwd, user_hash):
-                return 'logado'
+                encoded_jwt = jwt.encode(user, "secret", algorithm="HS256")
+                
+                response_data = {'message': 'Logged.'}
+                my_response = make_response(response_data)
+                my_response.headers['Authorization'] = f'Bearer {encoded_jwt}'
+                my_response.content_type = "application/json"
+                my_response.status_code = 201
+
+                return my_response
             else:
                 return { "message": "Incorrect password." }, 401
         else:
             return { "message": "User does not exist" }, 401
+        
+    def teste(self):
+        request_info = request.headers.get("Authorization")
+
+        print(request_info)
+
+        return 'jsonify(request_info)'
