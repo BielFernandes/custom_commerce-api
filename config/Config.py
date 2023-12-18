@@ -2,7 +2,7 @@
 
 class Config:
     # Configura o URI de conexão do banco de dados para o motor padrão
-    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:root@localhost/custom_commerce'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:root@localhost/postgres'
 
     # Define opções de motor para o motor padrão
     SQLALCHEMY_ENGINE_OPTIONS = {

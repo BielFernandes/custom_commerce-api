@@ -1,18 +1,25 @@
-from flask import request, make_response, jsonify
+from flask import request, make_response, jsonify, current_app, g
 from sqlalchemy import select
 from marshmallow import ValidationError
 from src.schemas.user import UserSchema, LoginSchema
 from src.models.User import User, db
 from datetime import date
-from src.controllers.application_controller import ApplicationController
+# from src.controllers.application_controller import ApplicationController
 import bcrypt
 import jwt
 
-class UserController(ApplicationController):
+class UserController():
+    # def __init__(self):
+    #     super().__init__()
+    #     self.current_user = self.get_current_user(request.headers.get('Authorization'))
 
-    def __init__(self):
-        super().__init__()
-        self.current_user = self.get_current_user()
+    def teste(self):
+        if hasattr(g, 'current_user'):
+            current_user = g.current_user
+            # Faça o que precisar com current_user
+            return f"Usuário atual: {current_user['username']}"
+        else:
+            return "Usuário não autenticado"
 
     def index(self):
         # squidward = User(
@@ -92,8 +99,8 @@ class UserController(ApplicationController):
         else:
             return { "message": "User does not exist" }, 401
         
-    def teste(self):
+    # def teste(self):
 
-        print(self.current_user)
+    #     print(self.current_user)
 
-        return 'jsonify(request_info)'
+    #     return 'jsonify(request_info)'
