@@ -13,14 +13,6 @@ class UserController():
     #     super().__init__()
     #     self.current_user = self.get_current_user(request.headers.get('Authorization'))
 
-    def teste(self):
-        if hasattr(g, 'current_user'):
-            current_user = g.current_user
-            # Faça o que precisar com current_user
-            return f"Usuário atual: {current_user['username']}"
-        else:
-            return "Usuário não autenticado"
-
     def index(self):
         # squidward = User(
         #                     fname="Gabriel",
