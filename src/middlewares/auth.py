@@ -1,8 +1,6 @@
-from functools import wraps
 import jwt
-from flask import request, abort
-from flask import current_app
-import src
+from functools import wraps
+from flask import request
 from src.models.User import User, db
 from src.schemas.user import UserSchema
 
