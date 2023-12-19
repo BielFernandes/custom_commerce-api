@@ -21,3 +21,7 @@ class UserSchema(Schema):
 
     def __repr__(self):
         return "<User(name={self.name!r})>".format(self=self)
+
+class LoginSchema(Schema):
+    email = fields.Str()
+    password = fields.Str()
