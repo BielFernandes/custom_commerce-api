@@ -13,7 +13,7 @@ with app.app_context(): #CREATE BASE MODEL CHILDRENS
   db.session.commit()
 
 
-app.register_blueprint(user_blueprint) #USER ROUTE BLUEPRINT
+app.register_blueprint(user_blueprint, url_prefix='/user') #USER ROUTE BLUEPRINT
 
 
 if __name__ == "__main__":
