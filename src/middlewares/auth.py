@@ -2,7 +2,7 @@ import jwt
 from functools import wraps
 from flask import request
 from src.models.User import User, db
-from src.schemas.user import UserSchema
+from src.schemas.user import DeserializedUserSchema
 
 def token_required(f):
     @wraps(f)
@@ -34,10 +34,9 @@ def token_required(f):
                 "error": str(e)
           }, 500
 
-        # if find_user:
-        user_schema = UserSchema()
+        user_schema = DeserializedUserSchema()
         current_user = user_schema.dump(current_user)
-
+        
         return f(current_user, *args, **kwargs)
         
     return decorated
